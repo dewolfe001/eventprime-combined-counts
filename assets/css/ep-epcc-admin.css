@@ -1,0 +1,7 @@
+.show-cap {
+	display: block;
+}
+
+.show-cap.false {
+	display: none;
+}
