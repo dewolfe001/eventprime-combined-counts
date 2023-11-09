@@ -304,7 +304,10 @@ $is_event_expired = check_event_has_expired( $args->event );
                                                         <span class="border-end border-2 mx-2"></span><?php
                                                     }?>
                                                     <span class="material-icons-outlined ep-fs-6 ep-align-middle ep-event-ticket-modal-ticket-capacity-icon">groups</span>
-                                                    <span class="ep-event-ticket-modal-ticket-capacity-icon"><?php esc_html_e( $capacity_text, 'eventprime-event-calendar-management' );?>: <?php echo absint( $ticket->capacity );?></span>
+                                                    <span class="ep-event-ticket-modal-ticket-capacity-icon">
+                                                        <?php esc_html_e( $capacity_text, 'eventprime-event-calendar-management' );?>: <?php echo absint( $ticket->capacity );?>
+                                                        <nobr><em><?php esc_html_e('Approx. seats remaining');?>: <? echo ep_get_available_tickets($args->event, $ticket); ?></em></nobr>
+                                                    </span>
                                                 </div>
                                                 <?php if( ! empty( $ticket->description ) ) {?>
                                                     <div class="ep-box-col-12 ep-ticket-description ep-text-small ep-py-2 ep-event-ticket-modal-ticket-description">
