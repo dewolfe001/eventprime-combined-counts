@@ -85,19 +85,17 @@ replacement code for the function at
 function ep_get_available_tickets($event, $ticket){
     $all_event_bookings = EventM_Factory_Service::get_event_booking_by_event_id( $event->em_id, true );
     // look at event_id
-    // error_log(__LINE__.' - '.print_r($ticket, TRUE));
-    // error_log(__LINE__.' - '.print_r($all_event_bookings, TRUE));    
-    
+
     $em_combined_count = get_post_meta($ticket->event_id, 'em_combined_count');
     $per_cap = false;
-	if (array_key_exists('ep-policy-default', $em_combined_count)) {
-        if ($em_combined_count['ep-policy-default'] == 'per-cap') {
+	if (array_key_exists('ep-policy-default', $em_combined_count[0])) {
+        if ($em_combined_count[0]['ep-policy-default'] == 'per-cap') {
             $per_cap = true;
         }
 	}
-    
+
     if ($per_cap) {
-        $remaining_caps = $em_combined_count['ep-policy-cap'];
+        $remaining_caps = $em_combined_count[0]['ep-policy-cap'];
 
         $booked_tickets_data = $all_event_bookings['tickets'];
         if( ! empty( $booked_tickets_data ) ) {
